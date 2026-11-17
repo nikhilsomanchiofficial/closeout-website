@@ -1,0 +1,197 @@
+/* modern.css — visual layer on top of styles.css.
+   To go back to the flat version, remove the <link> to this file in index.html. */
+
+:root {
+  --lift-1: 0 1px 2px rgba(21, 25, 31, 0.05), 0 10px 28px -10px rgba(21, 25, 31, 0.16);
+  --lift-2: 0 1px 2px rgba(21, 25, 31, 0.05), 0 18px 40px -14px rgba(21, 25, 31, 0.18), 0 48px 90px -40px rgba(17, 112, 76, 0.28);
+  --green-wash: rgba(17, 112, 76, 0.07);
+  --button-ink: #ffffff;
+  --slab: #15191f;
+  --slab-ink: #eef1f4;
+  --slab-ink-2: #a3adba;
+  --rule: rgba(21, 25, 31, 0.04);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --lift-1: 0 0 0 1px rgba(255, 255, 255, 0.03), 0 18px 40px -16px rgba(0, 0, 0, 0.7);
+    --lift-2: 0 0 0 1px rgba(255, 255, 255, 0.03), 0 24px 60px -20px rgba(0, 0, 0, 0.8), 0 48px 90px -40px rgba(63, 178, 127, 0.22);
+    --green-wash: rgba(63, 178, 127, 0.1);
+    --button-ink: #0b1a13;
+    --slab: #1b222a;
+    --rule: rgba(255, 255, 255, 0.028);
+  }
+}
+
+/* Header: lets the page show through as it scrolls under */
+.site-header {
+  background: color-mix(in srgb, var(--paper) 84%, transparent);
+  -webkit-backdrop-filter: saturate(1.4) blur(14px);
+  backdrop-filter: saturate(1.4) blur(14px);
+}
+
+/* Ledger-paper rules behind the top of the page, fading out */
+main { position: relative; }
+main::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 760px;
+  z-index: -1;
+  background-image: repeating-linear-gradient(to bottom, transparent 0 35px, var(--rule) 35px 36px);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 35%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 35%, transparent 100%);
+  pointer-events: none;
+}
+
+/* Hero type */
+h1 {
+  font-size: clamp(38px, 6vw, 68px);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -0.032em;
+  max-width: 16ch;
+  text-wrap: balance;
+}
+.lede { max-width: 52ch; color: var(--ink-2); }
+h2 { letter-spacing: -0.02em; }
+
+/* Buttons */
+.button {
+  background: var(--green);
+  color: var(--button-ink);
+  border-radius: 10px;
+  font-weight: 600;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 8px 18px -8px rgba(17, 112, 76, 0.6);
+  transition: transform 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+}
+.button:hover {
+  background: var(--green-ink);
+  color: var(--button-ink);
+  transform: translateY(-1px);
+}
+.button:active { transform: translateY(0); }
+.button-quiet {
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: inset 0 0 0 1px var(--line), 0 1px 2px rgba(21, 25, 31, 0.05);
+}
+.button-quiet:hover {
+  background: var(--paper-2);
+  color: var(--ink);
+}
+
+/* The ledger is the one raised object on the page */
+.ledger {
+  border-radius: 16px;
+  box-shadow: var(--lift-2);
+}
+/* The typeface's tabular figures are a separate monospaced cut that spaces commas badly */
+.ledger .num { font-variant-numeric: normal; }
+.ledger tbody tr:hover td { background: var(--paper-2); }
+.ledger tfoot td { background: var(--green-wash); }
+.ledger tfoot .num { font-size: 24px; letter-spacing: -0.01em; }
+.ledger-note { background: transparent; }
+
+/* Steps: numbered stops on one line */
+.steps { gap: 0; }
+.steps li {
+  position: relative;
+  border-top: 1px solid var(--line);
+  padding: 36px 40px 0 0;
+}
+.steps li::before {
+  position: absolute;
+  top: -17px;
+  left: 0;
+  width: 34px;
+  height: 34px;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--paper);
+  box-shadow: 0 1px 2px rgba(21, 25, 31, 0.06);
+}
+@media (max-width: 760px) {
+  .steps { gap: 44px; }
+  .steps li { padding-right: 0; }
+}
+
+/* What we never do: heading left, list right */
+@media (min-width: 900px) {
+  .never {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    column-gap: 56px;
+    align-items: start;
+  }
+  .never h2 { position: sticky; top: 104px; }
+}
+.plain { max-width: none; }
+.plain li {
+  position: relative;
+  padding-left: 34px;
+}
+.plain li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 21px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ink-2);
+  background: linear-gradient(to bottom right, transparent calc(50% - 0.75px), var(--ink-2) calc(50% - 0.75px) calc(50% + 0.75px), transparent calc(50% + 0.75px));
+  opacity: 0.7;
+}
+
+/* Fee: the one dark slab, so the page has a low point and a high point */
+#fee {
+  background: var(--slab);
+  color: var(--slab-ink);
+}
+#fee h2 {
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--slab-ink-2);
+  margin-bottom: 18px;
+}
+#fee .guarantee {
+  font-size: clamp(28px, 4.2vw, 46px);
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  max-width: 24ch;
+  text-wrap: balance;
+  margin-bottom: 32px;
+}
+#fee .fee-terms { color: var(--slab-ink-2); max-width: 58ch; }
+
+/* Booking */
+.calendly-inline-widget {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: var(--lift-1);
+}
+
+/* One entrance, on load only */
+@media (prefers-reduced-motion: no-preference) {
+  .hero > *, .ledger {
+    animation: settle 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+  .hero .lede { animation-delay: 0.06s; }
+  .hero .actions { animation-delay: 0.12s; }
+  .ledger { animation-delay: 0.2s; }
+  @keyframes settle {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: none; }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .button { transition: none; }
+  .button:hover { transform: none; }
+}
