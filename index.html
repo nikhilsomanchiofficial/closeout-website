@@ -15,13 +15,15 @@
 </head>
 <body>
 
-<header class="nav">
+<header class="site-header">
+<div class="nav">
   <a class="wordmark" href="#top"><picture class="logo"><source srcset="assets/leede-lockup-dark.svg" media="(prefers-color-scheme: dark)"><img src="assets/leede-lockup.svg" alt="Leede" width="122" height="30"></picture><span class="tagline">Closeout audits for California subcontractors</span></a>
   <nav>
     <a href="#how">How it works</a>
     <a href="#fee">Pricing</a>
-    <a class="button button-small" href="[CALENDAR_LINK]">Book a call</a>
+    <a class="button button-small" href="#book">Book a call</a>
   </nav>
+</div>
 </header>
 
 <main id="top">
@@ -30,7 +32,7 @@
     <h1>Money you've already earned is sitting with your GCs.</h1>
     <p class="lede">We sweep your closed jobs for retention never released, change orders never billed, and lien deadlines about to pass. In 14 days you get a report and every request drafted. Your office sends them.</p>
     <div class="actions">
-      <a class="button" href="[CALENDAR_LINK]">Book a call</a>
+      <a class="button" href="#book">Book a call</a>
       <a class="button button-quiet" href="https://claude.ai/artifact/URyg5uDSjBRwTCssfftX56">See a sample report</a>
     </div>
   </section>
@@ -129,12 +131,12 @@
     <p>Commercial electrical, mechanical, plumbing, and fire protection subcontractors in California doing $5M to $50M a year. If retention on your AR aging is one number instead of a list by job, there is almost certainly something stale in it.</p>
   </section>
 
-  <section class="cta">
+  <section class="cta" id="book">
     <h2>See what's on your last 24 months.</h2>
-    <div class="actions">
-      <a class="button" href="[CALENDAR_LINK]">Book a call</a>
-      <a class="button button-quiet" href="mailto:[email]?subject=Sample%20report">Email us</a>
-    </div>
+    <!-- Calendly inline widget begin -->
+    <div class="calendly-inline-widget" data-url="https://calendly.com/nikhil-getleede/30min?hide_gdpr_banner=1" style="min-width:320px;height:700px;"></div>
+    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+    <!-- Calendly inline widget end -->
   </section>
 
 </main>

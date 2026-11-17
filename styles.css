@@ -33,7 +33,7 @@
 
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
@@ -84,6 +84,13 @@ h3 {
 }
 
 /* Nav */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+}
 .nav {
   display: flex;
   align-items: center;
@@ -300,7 +307,8 @@ h3 {
 
 /* CTA */
 .cta { padding-block: 88px 96px; }
-.cta h2 { margin-bottom: 20px; }
+#book { scroll-margin-top: -56px; }
+.cta h2 { margin-bottom: 24px; }
 
 /* Footer */
 .footer {
